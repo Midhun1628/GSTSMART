@@ -12,10 +12,10 @@ const lastname = ref('');
 const email = ref('');
 const username = ref('');
 const password = ref('');
-const role_id=ref(3)
 const showPassword = ref(false);
 const errorMessage = ref('');
 const Regform = ref();
+const role_id=ref(2)
 
 // Validation Rules
 const nameRules = ref([(v: string) => !!v || 'This field is required']);
