@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../../frontend/src/views/authentication/LoginPage.vue';
 import Register from '../src/views/authentication/Register.vue';
 import Dashboard from '../../frontend/src/views/authentication/Dashboard.vue'
+
+import UserList from  '../../frontend/src/views/apps/customer/CustomerList.vue'
+
 // import { useAuthStore } from '@/store/auth';
 
 const routes = [
@@ -36,7 +39,15 @@ const routes = [
  // Redirect to login page
 
 }},
+{ path: '/users', name: 'Users', component: UserList }
 ];
+
+//manage User
+
+
+
+
+
 
 const router = createRouter({
   history: createWebHistory(),

@@ -11,7 +11,7 @@ const router = useRouter();
 
 // Form State
 const email = ref('midhun@gmail.com');
-const password = ref('111111');
+const password = ref('111');
 const showPassword = ref(false);
 const errorMsg = ref('');
 const checkbox = ref(false);
@@ -25,7 +25,7 @@ const emailRules = [
 
 const passwordRules = [
   (v) => !!v || 'Password is required',
-  (v) => v.trim().length >= 6 || 'Password must be at least 6 characters',
+  // (v) => v.trim().length >= 6 || 'Password must be at least 6 characters',
 ];
 
 // Handle reCAPTCHA

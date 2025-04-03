@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // imported components
-// import WelcomeBanner from './components/WelcomeBanner.vue';
+// import WelcomeBanner from '../../components/WelcomeBanner.vue';
 import { useRouter } from 'vue-router';
 
 
@@ -18,13 +18,15 @@ const router = useRouter();
 
 <template>
   <!-- -------------------------------------------------------------------- -->
-
-
-
-
-<button></button>
-
-  <router-link to="/logout" class="btn btn-primary">Logout</router-link>
+  <!-- Top Navigation Section -->
+  <!-- -------------------------------------------------------------------- -->
+  <v-row class="my-0" justify="end">
+    <v-col cols="auto">
+      <button class="btn">
+        <router-link to="/logout" class="btn-link">Logout</router-link>
+      </button>
+    </v-col>
+  </v-row>
 
   <!-- welcome banner -->
   <!-- -------------------------------------------------------------------- -->
@@ -33,18 +35,17 @@ const router = useRouter();
       <!-- <WelcomeBanner /> -->
     </v-col>
   </v-row>
-<!-- button -->
-<v-col cols="12">
-              <UiParentCard title="Basic Button">
-                <div class="d-flex ga-4 align-center flex-column flex-wrap flex-sm-row fill-height">
-                  <v-btn v-for="btn in btnsColor" rounded="md" :key="btn" :color="btn">
-                    {{ btn }}
-                  </v-btn>
-                </div>
-              </UiParentCard>
-            </v-col>
 
-
+  <!-- Button -->
+  <v-col cols="12">
+    <UiParentCard title="Basic Button">
+      <div class="d-flex ga-4 align-center flex-column flex-wrap flex-sm-row fill-height">
+        <v-btn v-for="btn in btnsColor" rounded="md" :key="btn" :color="btn">
+          {{ btn }}
+        </v-btn>
+      </div>
+    </UiParentCard>
+  </v-col>
 
   <!-- -------------------------------------------------------------------- -->
   <!-- Chart widgets -->
@@ -54,16 +55,12 @@ const router = useRouter();
   <v-row class="mb-0">
     <v-col cols="12" xl="9" md="8">
       <v-row>
-        <!-- -------------------------------------------------------------------- -->
         <!-- Repeat customer -->
-        <!-- -------------------------------------------------------------------- -->
         <v-col cols="12">
           <RepeatCustomer />
         </v-col>
 
-        <!-- -------------------------------------------------------------------- -->
         <!-- Project overview -->
-        <!-- -------------------------------------------------------------------- -->
         <v-col cols="12">
           <ProjectOverview />
         </v-col>
@@ -72,16 +69,12 @@ const router = useRouter();
 
     <v-col cols="12" xl="3" md="4">
       <v-row>
-        <!-- -------------------------------------------------------------------- -->
         <!-- Project -->
-        <!-- -------------------------------------------------------------------- -->
         <v-col cols="12">
           <ProjectCard />
         </v-col>
 
-        <!-- -------------------------------------------------------------------- -->
         <!-- User card -->
-        <!-- -------------------------------------------------------------------- -->
         <v-col cols="12">
           <UserCard />
         </v-col>
@@ -90,36 +83,36 @@ const router = useRouter();
   </v-row>
 
   <v-row>
-    <!-- -------------------------------------------------------------------- -->
     <!-- Transactions -->
-    <!-- -------------------------------------------------------------------- -->
     <v-col cols="12" md="6">
       <TransactionCard />
     </v-col>
 
-    <!-- -------------------------------------------------------------------- -->
     <!-- Total income -->
-    <!-- -------------------------------------------------------------------- -->
     <v-col cols="12" md="6">
       <TotalIncome />
     </v-col>
   </v-row>
 </template>
 
-
-
-
 <style scoped>
 .btn {
-  padding: 10px 20px;
+  padding: 10px 12px;
   background-color: red;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  text-decoration: none;
+  margin-right: 15px;
 }
 
 .btn:hover {
   background-color: darkred;
+}
+
+.btn-link {
+  text-decoration: none;
+  color: white;
 }
 </style>

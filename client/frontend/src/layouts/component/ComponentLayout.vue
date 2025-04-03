@@ -5,10 +5,10 @@ import { useDisplay } from 'vuetify';
 
 import VerticalSidebar from './sidebar/VerticalSidebar.vue';
 import AppBarMenu from './AppBarMenu.vue';
-import LoaderWrapper from '../dashboard/LoaderWrapper.vue';
-import Customizer from '../dashboard/customizer/CustomizerPanel.vue';
-import { useCustomizerStore } from '../../stores/customizer';
-import { DirAttrSet } from '@/utils/utils';
+import LoaderWrapper from '../../layouts/dashboard/LoaderWrapper.vue';
+import Customizer from '../../layouts/dashboard/customizer/CustomizerPanel.vue';
+import { useCustomizerStore } from '../../store/customizer';
+import { DirAttrSet } from '../../utils/utils';
 const customizer = useCustomizerStore();
 
 const { lgAndUp } = useDisplay();
@@ -27,40 +27,28 @@ watch(
   }
 );
 </script>
+
 <template>
   <v-locale-provider :rtl="customizer.isRtl">
-    <v-app
-      :theme="customizer.actTheme"
-      class="component-wrapper"
-      :class="[
-        customizer.actTheme,
-        customizer.fontTheme,
-        customizer.miniSidebar ? 'mini-sidebar' : '',
-        customizer.isHorizontalLayout ? 'horizontalLayout' : 'verticalLayout',
-        customizer.inputBg ? 'inputWithbg' : '',
-        customizer.themeContrast ? 'contrast' : ''
-      ]"
-    >
+    <v-app :theme="customizer.actTheme" class="component-wrapper">
       <Customizer />
-      <AppBarMenu @s-Toggle="(toggleSide = !toggleSide)" />
+      <AppBarMenu />
       <v-main class="page-wrapper">
         <v-container>
           <v-row class="mt-lg-8 mb-0">
-            <v-col lg="3" v-if="!toggleSide && lgAndUp">
+            <!-- Always show Sidebar -->
+            <v-col lg="3">
               <VerticalSidebar />
             </v-col>
             <v-col lg="9">
-              <!-- Loader start -->
+              <!-- Main Content -->
               <LoaderWrapper />
-              <!-- Loader end -->
               <RouterView />
             </v-col>
           </v-row>
         </v-container>
-        <v-navigation-drawer temporary v-model="toggleSide" width="300" top v-if="!lgAndUp">
-          <VerticalSidebar />
-        </v-navigation-drawer>
       </v-main>
     </v-app>
   </v-locale-provider>
 </template>
+
