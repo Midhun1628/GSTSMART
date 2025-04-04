@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useTheme } from 'vuetify';
 import SvgSprite from '@/components/shared/SvgSprite.vue';
-import { useCustomizerStore } from '@/stores/customizer';
+import { useCustomizerStore } from '../../../store/customizer';
 
 // Store instance for customizer settings
 const customizer = useCustomizerStore();

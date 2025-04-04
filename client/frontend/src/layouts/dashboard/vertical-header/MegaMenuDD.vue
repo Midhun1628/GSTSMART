@@ -91,7 +91,7 @@ onMounted(async () => {
             <v-btn rounded="md" variant="flat" class="scale-hover" :href="`${relativeURL}components/buttons`" target="_">
               View All
               <svg class="pc-icon ms-1 text-primary">
-                <use xlink:href="/assets/svg/sprite.svg#custom-chevron-right"></use>
+                <!-- <use xlink:href="/assets/svg/sprite.svg#custom-chevron-right"></use> -->
               </svg>
             </v-btn>
             <v-img :src="imageChart" alt="chart" width="124" height="126" />

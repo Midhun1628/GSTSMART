@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, shallowRef } from 'vue';
-import { useCustomers } from '../../../store/apps/customers'
+import { useCustomers } from '../../store/apps/customers'
+import { storeToRefs } from 'pinia';
 
-import SvgSprite from '../../../components/shared/SvgSprite.vue';
- 
-import BaseBreadcrumb from '../../../components/shared/BaseBreadcrumb.vue';
+import SvgSprite from '../../components/shared/SvgSprite.vue'
+import BaseBreadcrumb from '../../components/shared/BaseBreadcrumb.vue'
 import type { Header, Item } from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 
@@ -38,13 +38,16 @@ const searchValue = ref('');
 
 const headers: Header[] = [
   { text: 'Customer name', value: 'name', sortable: true },
-  { text: 'Contact', value: 'date', sortable: true },
-  { text: 'Age', value: 'orders', sortable: true },
+  { text: 'Contact', value: 'email', sortable: true }, // changed from 'date' to 'email'
+  { text: 'Company ID', value: 'company_id', sortable: true }, // changed from 'orders'
   { text: 'Country', value: 'location', sortable: true },
-  { text: 'Status', value: 'status', sortable: true },
+
   { text: 'Action', value: 'operation' }
 ];
-const items = ref(getCustomers);
+
+const items = storeToRefs(store).getCustomers;
+
+
 const themeColor = ref('rgb(var(--v-theme-primary))');
 const { deleteCustomer } = store;
 
@@ -225,11 +228,7 @@ const dialog = ref(false);
                 <small class="text-h6 text-lightText">{{ email }}</small>
               </div>
             </template>
-            <template #item-status="{ status }">
-              <v-chip color="success" v-if="status === 1" size="small"> Relationship </v-chip>
-              <v-chip color="error" v-if="status === 2" size="small"> Complicated </v-chip>
-              <v-chip color="info" v-if="status === 3" size="small"> Single </v-chip>
-            </template>
+            
             <template #item-operation="item">
               <div class="operation-wrapper">
                 <v-btn icon color="secondary" aria-label="view" variant="text" rounded="md">

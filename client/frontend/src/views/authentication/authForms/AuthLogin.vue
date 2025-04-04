@@ -45,7 +45,7 @@ const login = async () => {
 
     // Store Token and Redirect
     localStorage.setItem('token', response.data.accessToken);
-    router.push('/');
+    router.push('/dashboard');
   } catch (error) {
     errorMsg.value = error.response?.data?.message || 'Login failed';
   }

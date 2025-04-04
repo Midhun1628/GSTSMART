@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue';
 import { useDisplay } from 'vuetify';
-import { useCustomizerStore } from '@/stores/customizer';
+import { useCustomizerStore } from '../../../store/customizer';
 import HorizontalItems from './horizontalItems';
 import NavItem from './NavItem/NavItem.vue';
 import NavCollapse from './NavCollapse/NavCollapse.vue';

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import SvgSprite from '@/components/shared/SvgSprite.vue';
-import { useCustomizerStore } from '../../../stores/customizer';
+import { useCustomizerStore } from '../../../store/customizer';
 
 // assets
 import message1 from '@/assets/images/widget/message/message1.svg';

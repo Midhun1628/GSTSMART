@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import SvgSprite from '@/components/shared/SvgSprite.vue';
-import { useCustomizerStore } from '../../../stores/customizer';
+import { useCustomizerStore } from '../../../store/customizer';
 
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '../../../store/auth';
 
 const tab = ref(null);
 const authStore = useAuthStore();

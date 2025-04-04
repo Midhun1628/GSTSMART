@@ -1,88 +1,40 @@
-import { defineStore } from 'pinia';
-// project imports
-import axios from '@/utils/axios';
-// types
-import type { CustomerStateProps } from '@/types/customers/index';
+// store/apps/customers.ts
+import { defineStore } from 'pinia'
+import axios from 'axios'
 
-export const useCustomers = defineStore({
-  id: 'customers',
-  state: (): CustomerStateProps => ({
-    customers: [],
-    orders: [],
-    products: [],
-    productreviews: []
+export const useCustomers = defineStore('customers', {
+  state: () => ({
+    customers: []
   }),
   getters: {
-    // Get Customers from Getters
-    getCustomers(state) {
-      return state.customers;
-    },
-    // Get orders from Getters
-    getOrders(state) {
-      return state.orders;
-    },
-    // Get orders from Getters
-    getProducts(state) {
-      return state.products;
-    },
-    // Get orders from Getters
-    getProductsreviews(state) {
-      return state.productreviews;
-    }
+    getCustomers: (state) => state.customers
   },
+  
   actions: {
-    // Fetch Customers from action
     async fetchCustomers() {
       try {
-        const data = await axios.get('/api/data/customers');
-        this.customers = data.data;
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:3000/user/users', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        console.log('Fetched users:', response.data); // ✅ Debug log
+    
+        this.customers = response.data.map(user => ({
+          name: user.username,
+          email: user.email,
+          company_id: user.company_id,
+          location: user.location_id,
+          status: user.role_id
+        }));
       } catch (error) {
-        alert(error);
+        console.error('Failed to fetch users:', error); // ❌ Error log
       }
-    },
-
-    // Fetch Orders from action
-    async fetchOrders() {
-      try {
-        const data = await axios.get('/api/data/orders');
-        this.orders = data.data;
-      } catch (error) {
-        alert(error);
-      }
-    },
-
-    // Fetch products from action
-    async fetchProducts() {
-      try {
-        const data = await axios.get('/api/data/products');
-        this.products = data.data;
-      } catch (error) {
-        alert(error);
-      }
-    },
-
-    // Fetch products from action
-    async fetchReviews() {
-      try {
-        const data = await axios.get('/api/data/productreviews');
-        this.productreviews = data.data;
-      } catch (error) {
-        alert(error);
-      }
-    },
-
-    // Delete Customer
-    deleteCustomer(itemId: string) {
-      this.customers = this.customers.filter((object) => {
-        return object.name !== itemId;
-      });
-    },
-
-    // Delete Orders
-    deleteOrder(itemId: string) {
-      this.orders = this.orders.filter((object) => {
-        return object.id !== itemId;
-      });
     }
-  }
+    ,
+    async deleteCustomer(username: string) {
+      this.customers = this.customers.filter(c => c.name !== username);
+      // Optionally call backend delete here
+    }
+  },
+  
 });

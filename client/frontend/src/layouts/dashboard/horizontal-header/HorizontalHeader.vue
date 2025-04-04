@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import SvgSprite from '@/components/shared/SvgSprite.vue';
-import { useCustomizerStore } from '../../../stores/customizer';
+import { useCustomizerStore } from '../../../store/customizer';
 import Logo from '../logo/LogoMain.vue';
 // dropdown imports
 import LanguageDD from '../vertical-header/LanguageDD.vue';
